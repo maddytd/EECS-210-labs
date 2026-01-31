@@ -63,26 +63,49 @@ def bitwise_xor(str1, str2):
 
 def main():
     '''
-    main function that takes 2 binary strings and outputs their 
-    results of and, or, and xor operations
+    main function that takes 2 binary strings and outputs 
+    their results of and, or, and xor operations
+
+    program continues unlesss user decides to exit
     '''
-    # Get first binary string
-    binary_str1 = get_binary_string()
 
-    # Get second binary string
-    binary_str2 = get_binary_string()
+    # Loop to keep program running
+    while True:
+        # Get first binary string from user
+        binary_str1 = get_binary_string()
+        
+        # Get second binary string from user
+        binary_str2 = get_binary_string()
 
-    # Ensure both strings are of the same length
-    if len(binary_str1) != len(binary_str2):
-        print("Binary strings must be of the same length. Please try again.")
-        return
-    
-    # Perform bitwise operations
-    and_result = bitwise_and(binary_str1, binary_str2)
-    or_result = bitwise_or(binary_str1, binary_str2)
-    xor_result = bitwise_xor(binary_str1, binary_str2)
+        # Check if both strings have the same length
+        if len(binary_str1) != len(binary_str2):
+            print(f"Error: Bit strings must have the same length!")
+            print(f"First string has {len(binary_str1)} bits, second string has {len(binary_str2)} bits.")
+            print("Please restart and try again.")
+            print()  # Blank line for readability
+            continue  # Restart the loop to get new inputs
+        
+        # Perform bitwise operations
+        and_result = bitwise_and(binary_str1, binary_str2)
+        or_result = bitwise_or(binary_str1, binary_str2)
+        xor_result = bitwise_xor(binary_str1, binary_str2)
+        
+        # Display results (keeping leading zeros as specified)
+        print(f"AND: {and_result}")
+        print(f"OR: {or_result}")
+        print(f"XOR: {xor_result}")
+        print()  # Blank line for readability
+        
+        # Ask user if they want to continue
+        continue_choice = input("Do you want to perform another operation? (yes/no): ").strip().lower()
+        
+        # Exit loop if user says no
+        if continue_choice in ['no', 'n']:
+            print("Thank you for using the bitwise operations program!")
+            break
+        
+        print()  # Blank line between runs
 
-    # Print results
-    print(f"Bitwise AND: {and_result}")
-    print(f"Bitwise OR: {or_result}")
-    print(f"Bitwise XOR: {xor_result}")
+#run program
+if __name__ == "__main__":
+    main()
